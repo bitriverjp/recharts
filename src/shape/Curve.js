@@ -22,8 +22,6 @@ const defined = p => p.x === +p.x && p.y === +p.y;
 const getX = p => p.x;
 const getY = p => p.y;
 
-const removeNaN = p => !isNaN(p.value);
-
 const getCurveFactory = (type, layout) => {
   if (_.isFunction(type)) { return type; }
 
@@ -52,7 +50,6 @@ class Curve extends PureComponent {
     ]),
     points: PropTypes.arrayOf(PropTypes.object),
     connectNulls: PropTypes.bool,
-    connectNaN: PropTypes.bool,
     path: PropTypes.string,
     pathRef: PropTypes.func,
   };
@@ -61,7 +58,6 @@ class Curve extends PureComponent {
     type: 'linear',
     points: [],
     connectNulls: false,
-    connectNaN: false,
   };
 
   /**
@@ -69,16 +65,9 @@ class Curve extends PureComponent {
    * @return {String} path
    */
   getPath() {
-    const { type, points, baseLine, layout, connectNulls, connectNaN } = this.props;
+    const { type, points, baseLine, layout, connectNulls } = this.props;
     const curveFactory = getCurveFactory(type, layout);
-    let formatPoints;
-    if(connectNulls) {
-      formatPoints = points.filter(entry => defined(entry));
-    } else if(connectNaN) {
-      formatPoints = points.filter(entry => removeNaN(entry));
-    } else {
-      formatPoints = points;
-    }
+    const formatPoints = connectNulls ? points.filter(entry => defined(entry)) : points;
     let lineFunction;
 
     if (_.isArray(baseLine)) {
