@@ -46,6 +46,7 @@ class Line extends PureComponent {
     tooltipType: PropTypes.oneOf(TOOLTIP_TYPES),
     layout: PropTypes.oneOf(['horizontal', 'vertical']),
     connectNulls: PropTypes.bool,
+    connectNaN: PropTypes.bool,
     hide: PropTypes.bool,
 
     // whether have dot in line
@@ -88,6 +89,7 @@ class Line extends PureComponent {
     xAxisId: 0,
     yAxisId: 0,
     connectNulls: false,
+    connectNaN: false,
     activeDot: true,
     dot: true,
     legendType: 'line',
@@ -301,7 +303,7 @@ class Line extends PureComponent {
   }
 
   renderCurveStatically(points, needClip, clipPathId, props) {
-    const { type, layout, connectNulls } = this.props;
+    const { type, layout, connectNulls, connectNaN } = this.props;
     const curveProps = {
       ...getPresentationAttributes(this.props),
       ...filterEventAttributes(this.props),
@@ -310,7 +312,7 @@ class Line extends PureComponent {
       clipPath: needClip ? `url(#clipPath-${clipPathId})` : null,
       points,
       ...props,
-      type, layout, connectNulls,
+      type, layout, connectNulls, connectNaN
     };
 
     return <Curve {...curveProps} pathRef={this.pathRef} />;
