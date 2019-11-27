@@ -1,6 +1,6 @@
 {
   "name": "@bitriver/recharts",
-  "version": "1.8.6",
+  "version": "1.8.7",
   "description": "React charts",
   "main": "lib/index",
   "module": "es6/index",
