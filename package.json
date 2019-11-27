@@ -42,13 +42,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitriverjp/recharts/recharts.git"
+    "url": "https://github.com/bitriverjp/recharts.git"
   },
   "author": "recharts group",
   "bugs": {
-    "url": "https://github.com/bitriverjp/recharts/recharts/issues"
+    "url": "https://github.com/bitriverjp/recharts/issues"
   },
-  "homepage": "https://github.com/bitriverjp/recharts/recharts",
+  "homepage": "https://github.com/bitriverjp/recharts/",
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
